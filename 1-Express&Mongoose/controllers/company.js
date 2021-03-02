@@ -1,6 +1,6 @@
 const express = require('express'),
   router = express.Router()
-  
+
 
 // adding company services
 const Company = require('../services/company')
@@ -30,36 +30,75 @@ const Company = require('../services/company')
 //     registerDate: Date.now(),
 //     telephone: 09191234533,
 //   },])
-  
+
 
 // Company.update({_id: "603e882fb0e0560348a1c8bb"},{name: "javeed"})
 // Company.delete({_id: "603e882fb0e0560348a1c8bb"})
 // Company.read()
 
 
-/*create */
-router.post('/company', function (req, res) {
-  res.send('company page is listening here ...')
+// ================= crud routes =================
+
+// ================= create 
+router.post("/company/create", (req, res) => {
+  let newCompanyInfo = {
+    name: req.body.name,
+    cin: req.body.cin,
+    city: req.body.city,
+    county: req.body.county,
+    registerDate: new Date(req.body.registerDate),
+    telephone: req.body.telephone
+  }
+
+  Company.create([newCompanyInfo], (company) => {
+    res.status(201).json(company)
+  })
 })
 
-/* get all */
-router.get('/company/getAll', function (req, res) {
-  res.send('get all.')
+// ================= read
+router.get("/company/getAll", (req, res) => {
+  Company.read({}, (companies) => {
+    res.json(companies)
+  })
 })
 
-/* get one */
-router.get('/company/get:id', function (req, res) {
-  res.send('get one')
+router.get("/company/get", (req, res) => {
+  console.log("queried id", req.query.id);
+  Company.read({
+    _id: req.query.id
+  }, (company) => {
+    res.json(company)
+  })
 })
 
-/* delete */
-router.delete('/company', function (req, res) {
-  res.send('company page is listening here ...')
+// ================= update 
+router.put("/company/update", (req, res) => {
+
+  let companyUpdateInfo = {
+    name: req.body.name,
+    cin: req.body.cin,
+    city: req.body.city,
+    county: req.body.county,
+    registerDate: new Date(req.body.registerDate),
+    telephone: req.body.telephone
+  }
+
+  Company.update({
+    _id: req.query.id
+  }, companyUpdateInfo, (company) => {
+    res.json(company);
+  })
 })
 
-/* update */
-router.put('/company', function (req, res, next) {
-  res.send('company page is listening here ...')
+// =================== delete
+router.delete("/company/delete", (req, res) => {
+
+  Company.delete({
+    _id: req.query.id
+  }, (response) => {
+    res.json(response)
+  })
 })
+
 
 module.exports = router

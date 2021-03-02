@@ -8,7 +8,7 @@ module.exports = {
 
         })
     },
-    create: (employeeInfo) => {
+    create: (employeeInfo, callback) => {
         if (Array.isArray(employeeInfo)) {
 
             employeeInfo.forEach(employee => {
@@ -21,43 +21,45 @@ module.exports = {
                     birthday: employee.birthday,
                 }).save((err, employee) => {
                     if (err) console.log(err.message)
-                    console.log(employee);
+                    // console.log(employee);
+                    callback(employee)
                 })
             })
         } else {
             return new employeeModel({
-                name: employeeInfo.name,
-                cin: employeeInfo.cin,
-                city: employeeInfo.city,
-                county: employeeInfo.county,
-                registerDate: employeeInfo.registerDate,
-                telephone: employeeInfo.telephone,
+                firstName: employee.firstName,
+                lastName: employee.lastName,
+                id: employee.id,
+                gender: employee.gender,
+                manager: employee.manager,
+                birthday: employee.birthday,
             }).save((err, employee) => {
                 if (err) console.log(err.message)
-                console.log(employee);
+                // console.log(employee);
+                callback(employee)
             })
         }
     },
-    read: (match) => {
+    read: (match, callback) => {
         employeeModel.find(match, (err, employees) => {
             if (err) console.log(err);
-            return console.log(employees);
+            callback(employees)
         })
 
     },
-    update: (match, updateInfo) => {
+    update: (match, updateInfo, callback) => {
         employeeModel.findOneAndUpdate(
             match, updateInfo, {
                 new: true
             }, (err, employee) => {
                 if (err) console.log(err);
-                return console.log(employee);
+                callback(employee)
             })
     },
-    delete: (match) => {
+    delete: (match, callback) => {
         employeeModel.deleteOne(match, (err, employee) => {
             if (err) console.log(err);
-            return console.log(employee);
+           callback(employee);
         })
     }
 }

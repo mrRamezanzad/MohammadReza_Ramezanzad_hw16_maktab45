@@ -1,4 +1,3 @@
-
 let companyModel = require('../models/company')
 
 module.exports = {
@@ -9,7 +8,7 @@ module.exports = {
 
         })
     },
-    create: (companyInfo) => {
+    create: (companyInfo, callback) => {
         if (Array.isArray(companyInfo)) {
 
             companyInfo.forEach(company => {
@@ -22,7 +21,7 @@ module.exports = {
                     telephone: company.telephone,
                 }).save((err, company) => {
                     if (err) console.log(err.message)
-                    console.log(company);
+                    callback(company);
                 })
             })
         } else {
@@ -35,30 +34,30 @@ module.exports = {
                 telephone: companyInfo.telephone,
             }).save((err, company) => {
                 if (err) console.log(err.message)
-                console.log(company);
+                callback(company);
             })
         }
     },
-    read: (match) => {
+    read: (match, callback) => {
         companyModel.find(match, (err, companies) => {
             if (err) console.log(err);
-            return console.log(companies);
+            callback(companies);
         })
 
     },
-    update: (match, updateInfo) => {
+    update: (match, updateInfo, callback) => {
         companyModel.findOneAndUpdate(
             match, updateInfo, {
                 new: true
             }, (err, company) => {
                 if (err) console.log(err);
-                return console.log(company);
+                callback(company);
             })
     },
-    delete: (match) => {
+    delete: (match, callback) => {
         companyModel.deleteOne(match, (err, company) => {
             if (err) console.log(err);
-            return console.log(company);
+            callback(company);
         })
     }
 }
