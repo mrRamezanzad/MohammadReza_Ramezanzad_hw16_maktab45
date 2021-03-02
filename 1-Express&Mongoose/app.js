@@ -6,9 +6,9 @@ const createError = require('http-errors'),
   mongoose = require('mongoose')
 
 // adding controllers
-const indexRouter = require('./routes/index'),
-  companyRouter = require('./routes/company'),
-  employeeRouter = require('./routes/employee')
+const indexRouter = require('./controllers/index'),
+  companyRouter = require('./controllers/company'),
+  employeeRouter = require('./controllers/employee')
 
 const app = express()
 

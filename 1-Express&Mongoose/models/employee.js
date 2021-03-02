@@ -17,7 +17,7 @@ module.exports = mongoose.model('employee', mongoose.Schema({
     manager: {
         type: Boolean,
     },
-    birtday: {
+    birthday: {
         type: Date,
     }
 

@@ -5,21 +5,36 @@ const express = require('express'),
 // adding company services
 const Company = require('../services/company')
 
+// crud services routes
+// Company.dropCollection()
 
-
-// Company.dropCollection(companyModel)
-
-
-// Company.create({
+// Company.create([{
 //     name: "rastad",
 //     cin: 1,
 //     city: "tehran",
 //     county: "eslamshar",
 //     registerDate: Date.now(),
 //     telephone: 09191234533,
-//   })
+//   },{
+//     name: "afra",
+//     cin: 2,
+//     city: "tehran",
+//     county: "eslamshar",
+//     registerDate: Date.now(),
+//     telephone: 09191234533,
+//   },{
+//     name: "Montego",
+//     cin: 3,
+//     city: "tehran",
+//     county: "eslamshar",
+//     registerDate: Date.now(),
+//     telephone: 09191234533,
+//   },])
   
-  // Company.find()
+
+// Company.update({_id: "603e882fb0e0560348a1c8bb"},{name: "javeed"})
+// Company.delete({_id: "603e882fb0e0560348a1c8bb"})
+// Company.read()
 
 
 /*create */
