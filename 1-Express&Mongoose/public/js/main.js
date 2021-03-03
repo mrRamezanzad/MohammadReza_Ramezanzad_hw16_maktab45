@@ -89,3 +89,37 @@ $("body").on("mouseover mouseout", ".btn-more", function () {
 //     // $("[type='search']").toggleClass("shadow");
 //     }
 // })
+
+// show modal form for create
+// function showSignUpForm(){
+//     console.log("new user is invoked")
+//     modalBody.html('')
+//     modalBody.append(`
+//     <form class=" bg-dark"> 
+//     <div class="mb-3">
+//     <label for="exampleInputEmail1" class="form-label">user id: </label>
+//     <input type="text" class="form-control " name="id" >
+//     </div>
+//     <div class="mb-3">
+//     <label for="exampleInputPassword1" class="form-label">first name: </label>
+//     <input type="text" class="form-control" name="first_name">
+//     </div>
+//     <div class="mb-3">
+//     <label for="exampleInputPassword1" class="form-label">last name: </label>
+//     <input type="text" class="form-control" name="last_name">
+//     </div>
+//     <div class="mb-3">
+//     <label for="exampleInputPassword1" class="form-label">email address: </label>
+//     <input type="text" class="form-control" name="email">
+//     </div>
+//     <div class="mb-3">
+//     <label for="exampleInputPassword1" class="form-label">picture URL: </label>
+//     <input type="text" class="form-control" name="avatar">
+//     </div>
+//     </form>
+//     `)
+//     modalFooter.html(`
+//     <button id="save-new" class=" btn btn-outline-success offset-left my-3" data-bs-dismiss="modal"> Save </button>
+//     `)
+//     console.log(users)
+// }

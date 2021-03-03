@@ -1,14 +1,16 @@
 @import url("/css/bootstrap-icons.css");
 @import url("http://cdn.persianfort.ir/Fonts/iransans/iransans.css");
-a{
+
+a {
     color: black;
 }
+
 nav {
 
     .navbar-brand {
         padding: 0;
         font-size: 1.5rem;
-        color: steelblue !important;
+        color: #7B7778 !important;
         font-family: monospace;
         width: 300px;
 
@@ -19,8 +21,8 @@ nav {
         }
 
         &:hover {
-            color: darkgrey !important;
-            text-shadow: 0 2px 2px black;
+            color: #968561 !important;
+            text-shadow: 0 2px 2px #74654B;
             font-weight: 900;
             font-family: cursive;
             transition: all .1s steps(100);
@@ -39,7 +41,7 @@ nav {
 
             .nav-link,
             span {
-                color: rgb(110, 110, 110) !important;
+                color: #968561 !important;
                 text-shadow: 0 0 1px black;
             }
         }
@@ -74,14 +76,20 @@ nav {
         margin-left: auto;
         border-radius: 8px;
         display: block;
+        background: #74654B !important;
+
         // background-color: darkslategray !important;
-        &:hover{
-            color: slateblue!important;
+        &:hover {
+            color: #968561 !important;
+            text-shadow: 0 2px 1px #968561;
+            font-weight: 500;
             background-color: white !important;
         }
     }
-    #delete-button{
+
+    #delete-button {
         color: red;
+
         &:hover {
             color: orange;
             text-shadow: 0 1px 3px red;
@@ -97,4 +105,64 @@ nav {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+// ============== modal styles
+.modal {
+    border-radius: 10px;
+
+    .card {
+        img {
+            background-size: cover;
+            // width: 100% !important;
+            // height: 250px !important;
+            border-radius: 5px;
+        }
+
+        span {
+            font-weight: 300;
+            color: whitesmoke;
+        }
+    }
+}
+
+.modal-content {
+    background: #74654B ;
+    color: white;
+
+    div {
+        border: none;
+    }
+
+    [data-bs-dismiss="modal"] {
+        color: red !important;
+        &:hover {
+            color: orange !important;
+            text-shadow: 0 3px 3px orangered !important;
+        }
+    }
+
+    #save {
+        &-new {
+            &:hover {
+                color: white !important;
+            }
+        }
+
+        &-update {
+            &:hover {
+                color: white !important;
+            }
+        }
+    }
+
+    #delete-user[data-bs-dismiss=modal] {
+
+        color: black !important;
+
+        &:hover {
+
+            color: black !important;
+        }
+    }
 }

@@ -6,7 +6,7 @@
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-5">
                     <div class="card w-100">
                         <div class="card-body">
-                            <span id= "delete-button" class=" rounded-circle">X</span>
+                            <span id="delete-button" class=" rounded-circle">X</span>
                             <h5 class="card-title text-center">
                                 <%= company.name %>
                             </h5>
@@ -25,11 +25,35 @@
                                     <%= company.city %>
                                 </Strong></p>
 
-                            <a href="#" class="btn-more btn btn-dark ms-auto">More</a>
+                            <a href="#" class="btn-more btn btn-dark ms-auto" data-bs-toggle="modal"
+                                data-bs-target="#more-info-modal">More</a>
                         </div>
                     </div>
                 </div>
                 <% }) %>
+                    <!-- modal -->
+                    <div class="modal fade" id="more-info-modal" tabindex="-1" aria-labelledby="moreInfoModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content shadow-lg">
+                                <div class="modal-header ">
+                                    <h5 class="modal-title text-capitalize" id="exampleModalLabel">informations of
+                                        company </h5>
+                                    <button type="button" class="btn btn-lg text-white fs-5 " data-bs-dismiss="modal"
+                                        aria-label="Close">X</button>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="update-user" type="button" class="btn btn-warning">Update</button>
+                                    <button id="delete-user" type="button" class="btn btn-danger"
+                                        data-bs-dismiss="modal">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
         </main>
     </div>
 

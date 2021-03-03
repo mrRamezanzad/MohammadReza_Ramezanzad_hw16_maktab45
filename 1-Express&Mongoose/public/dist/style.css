@@ -7,7 +7,7 @@ a {
 nav .navbar-brand {
   padding: 0;
   font-size: 1.5rem;
-  color: steelblue !important;
+  color: #7B7778 !important;
   font-family: monospace;
   width: 300px;
 }
@@ -16,8 +16,8 @@ nav .navbar-brand::first-letter {
   font-size: 2rem;
 }
 nav .navbar-brand:hover {
-  color: darkgrey !important;
-  text-shadow: 0 2px 2px black;
+  color: #968561 !important;
+  text-shadow: 0 2px 2px #74654B;
   font-weight: 900;
   font-family: cursive;
   transition: all 0.1s steps(100);
@@ -30,7 +30,7 @@ nav .nav-item {
 }
 nav .nav-item:hover .nav-link,
 nav .nav-item:hover span {
-  color: #6e6e6e !important;
+  color: #968561 !important;
   text-shadow: 0 0 1px black;
 }
 nav .nav-item span.bi {
@@ -57,9 +57,12 @@ nav .nav-item .nav-link {
   margin-left: auto;
   border-radius: 8px;
   display: block;
+  background: #74654B !important;
 }
 .card .btn-more:hover {
-  color: slateblue !important;
+  color: #968561 !important;
+  text-shadow: 0 2px 1px #968561;
+  font-weight: 500;
   background-color: white !important;
 }
 .card #delete-button {
@@ -78,4 +81,43 @@ nav .nav-item .nav-link {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+.modal {
+  border-radius: 10px;
+}
+.modal .card img {
+  background-size: cover;
+  border-radius: 5px;
+}
+.modal .card span {
+  font-weight: 300;
+  color: whitesmoke;
+}
+
+.modal-content {
+  background: #74654B;
+  color: white;
+}
+.modal-content div {
+  border: none;
+}
+.modal-content [data-bs-dismiss=modal] {
+  color: red !important;
+}
+.modal-content [data-bs-dismiss=modal]:hover {
+  color: orange !important;
+  text-shadow: 0 3px 3px orangered !important;
+}
+.modal-content #save-new:hover {
+  color: white !important;
+}
+.modal-content #save-update:hover {
+  color: white !important;
+}
+.modal-content #delete-user[data-bs-dismiss=modal] {
+  color: black !important;
+}
+.modal-content #delete-user[data-bs-dismiss=modal]:hover {
+  color: black !important;
 }
