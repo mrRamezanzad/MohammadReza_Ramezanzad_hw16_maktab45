@@ -25,7 +25,7 @@ module.exports = {
                 })
             })
         } else {
-            return new employeeModel({
+            new employeeModel({
                 firstName: employee.firstName,
                 lastName: employee.lastName,
                 id: employee.id,

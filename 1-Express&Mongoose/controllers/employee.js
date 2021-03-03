@@ -77,6 +77,19 @@ router.post("/employee/create", (req, res) => {
         }
     }
 
+    // ========== getting informations functionally ============
+    // function getInformations(data) {
+    //     let employeeProperties = ["firstName", "lastName", "id", "gender", "manager"]
+    //     let fullData = {}
+    //     employeeProperties.forEach((property, index) => {
+           
+    //             ...(data[property]) && {fulldata[property] : data[property]}
+          
+    //     })
+    //     console.log(fullData);
+    // }
+    // getInformations()
+
     Employee.create([newEmployeeInfo], (employee) => {
         if (employee) {
             res.status(201).json(employee)
