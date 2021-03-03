@@ -37,11 +37,12 @@ module.exports = {
             })
         }
     },
-    read: (match, callback) => {
-        companyModel.find(match, (err, companies) => {
-            if (err) console.log(err);
-            callback(companies);
-        })
+    read: (match, exclude, callback) => {
+        exclude = {...exclude, _id:1, __v:0}
+            companyModel.find(match, exclude, (err, companies) => {
+                if (err) console.log(err);
+                callback(companies);
+            })
     },
     update: (match, updateInfo, callback) => {
         companyModel.findOneAndUpdate(

@@ -21,7 +21,6 @@ module.exports = {
                     birthday: employee.birthday,
                 }).save((err, employee) => {
                     if (err) console.log(err.message)
-                    // console.log(employee);
                     callback(employee)
                 })
             })
@@ -40,8 +39,9 @@ module.exports = {
             })
         }
     },
-    read: (match, callback) => {
-        employeeModel.find(match, (err, employees) => {
+    read: (match, exclude, callback) => {
+       exclude = {...exclude ,_id: 1, __v: 0}
+        employeeModel.find(match, exclude, (err, employees) => {
             if (err) console.log(err);
             callback(employees)
         })

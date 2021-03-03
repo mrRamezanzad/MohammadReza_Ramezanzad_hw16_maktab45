@@ -11,34 +11,48 @@ const Employee = require('../services/employee')
 // Employee.create([{
 //     firstName: "ali",
 //     lastName: "abbsi",
-//     id: 1,
+//     id: "1",
 //     gender: "male",
 //     manager: false,
-//     birthday: Date.now()
-// },{
+//     birthday: new Date("2010").toDateString()
+// }, {
 //     firstName: "mitra",
 //     lastName: "vahidee",
-//     id: 2,
+//     id: "2",
 //     gender: "female",
 //     manager: true,
-//     birthday: Date.now()
-// },{
+//     birthday: new Date("1995").toDateString()
+// }, {
 //     firstName: "masood",
 //     lastName: "rajabi",
-//     id: 3,
+//     id: "3",
 //     gender: "male",
 //     manager: false,
-//     birthday: Date.now()
-// },])
+//     birthday: new Date("1980").toDateString()
+// }, ], (employees) => {
+//     console.log(employees);
+// })
 
 
-// Employee.update({_id: "603e930785955a0a1cb0c8cb"},{lastName: "javeed"})
-// Employee.delete({_id: "603e930785955a0a1cb0c8cb"})
+// Employee.update({
+//     _id: "603e930785955a0a1cb0c8cb"
+// }, {
+//     lastName: "javeed"
+// }), (employee) => {
+// console.log(employee);
+// })
+// Employee.delete({
+//     _id: "603e930785955a0a1cb0c8cb"
+// }, (employee) => {
+// console.log(employee);
+// }))
 // Employee.read({
 //     _id: "603e9cdaecf5174278badbe7"
 // }, (e) => {
 //     console.log(e);
-// })
+// }, (employee) => {
+// console.log(employee);
+// }))
 
 // ================= crud routes =================
 
@@ -78,7 +92,52 @@ router.post("/employee/create", (req, res) => {
 
 // ================= read
 router.get("/employee/getAll", (req, res) => {
-    Employee.read({}, (employees) => {
+    let currentYear = new Date().getFullYear(),
+        match = {
+            ...(req.query.minAge && !req.query.maxAge) && {
+                birthday: {
+                    $lte: new Date(`${currentYear - req.query.minAge}`)
+                }
+            },
+            ...(req.query.maxAge && !req.query.minAge) && {
+                birthday: {
+                    $gte: new Date(`${currentYear - req.query.maxAge}`)
+                }
+            },
+            ...(req.query.minAge && req.query.maxAge) && {
+                birthday: {
+                    $lte: new Date(`${currentYear - req.query.minAge}`),
+                    $gte: new Date(`${currentYear - req.query.maxAge}`)
+                }
+            },
+        },
+        exc = req.query.exc && req.query.exc.split(","),
+        exclude = exc && {
+            ...(exc.includes("firstName") && {
+                firstName: 0
+            }),
+            ...(exc.includes("lastName")) && {
+                lastName: 0
+            },
+            ...(exc.includes("id")) && {
+                id: 0
+            },
+            ...(exc.includes("gender")) && {
+                gender: 0
+            },
+            ...(exc.includes("manager")) && {
+                manager: 0
+            },
+            ...(exc.includes("birthday")) && {
+                birthday: 0
+            }
+        }
+
+    // console.log(match);
+    // console.log(exclude);
+    // console.log(currentYear);
+
+    Employee.read(match, exclude, (employees) => {
         if (employees) {
             res.json(employees)
         } else {
@@ -90,10 +149,11 @@ router.get("/employee/getAll", (req, res) => {
 })
 
 router.get("/employee/get", (req, res) => {
-    console.log("queried id", req.query.id);
+    let exclude = {}
+
     Employee.read({
         _id: req.query.id
-    }, (employee) => {
+    }, exclude, (employee) => {
         if (employee) {
             res.json(employee)
         } else {

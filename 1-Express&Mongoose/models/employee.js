@@ -8,7 +8,7 @@ module.exports = mongoose.model('employee', mongoose.Schema({
         type: String,
     },
     id: {
-        type: Number,
+        type: String,
     },
     gender: {
         type: String,

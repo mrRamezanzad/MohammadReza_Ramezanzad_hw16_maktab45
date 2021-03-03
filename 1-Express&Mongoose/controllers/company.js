@@ -77,7 +77,11 @@ router.post("/company/create", (req, res) => {
 
 // ================= read
 router.get("/company/getAll", (req, res) => {
-  Company.read({}, (companies) => {
+  let exclude = req.query.exc && {
+
+  }
+
+  Company.read({}, exclude, (companies) => {
     if (companies) {
       res.json(companies)
     } else {
@@ -93,19 +97,20 @@ router.get("/company/get/q=", (req, res) => {
 
   let selectedRegister = new Date()
   selectedRegister.setFullYear(selectedRegister.getFullYear() - req.query.lt)
-
   let match = {
-    ...(req.query.lt) && {
-      registerDate: {
-        $gte: selectedRegister
+      ...(req.query.lt) && {
+        registerDate: {
+          $gte: selectedRegister
+        },
       },
+      ...(req.query.id) && {
+        _id: req.query.id
+      }
     },
-    ...(req.query.id) && {
-      _id: req.query.id
-    }
-  }
+    exclude = req.query.exc && {}
+  // console.log(match);
 
-  Company.read(match, (company) => {
+  Company.read(match, exclude, (company) => {
     if (company) {
       res.json(company)
       // console.log(company);
