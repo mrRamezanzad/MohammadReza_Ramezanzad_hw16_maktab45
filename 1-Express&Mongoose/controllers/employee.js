@@ -45,12 +45,24 @@ const Employee = require('../services/employee')
 // ================= create 
 router.post("/employee/create", (req, res) => {
     let newEmployeeInfo = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        id: req.body.id,
-        gender: req.body.gender,
-        manager: req.body.manager,
-        birthday: new Date(req.body.birthday)
+        ...(req.body.firstName) && {
+            firstName: req.body.firstName
+        },
+        ...(req.body.lastName) && {
+            lastName: req.body.lastName
+        },
+        ...(req.body.id) && {
+            id: req.body.id
+        },
+        ...(req.body.gender) && {
+            gender: req.body.gender
+        },
+        ...(req.body.manager) && {
+            manager: req.body.manager
+        },
+        ...(req.body.birthday) && {
+            birthday: new Date(req.body.birthday)
+        }
     }
 
     Employee.create([newEmployeeInfo], (employee) => {
@@ -78,12 +90,24 @@ router.get("/employee/get", (req, res) => {
 router.put("/employee/update", (req, res) => {
 
     let employeeUpdateInfo = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        id: req.body.id,
-        gender: req.body.gender,
-        manager: req.body.manager,
-        birthday: req.body.birthday
+        ...(req.body.firstName) && {
+            firstName: req.body.firstName
+        },
+        ...(req.body.lastName) && {
+            lastName: req.body.lastName
+        },
+        ...(req.body.id) && {
+            id: req.body.id
+        },
+        ...(req.body.gender) && {
+            gender: req.body.gender
+        },
+        ...(req.body.manager) && {
+            manager: req.body.manager
+        },
+        ...(req.body.birthday) && {
+            birthday: req.body.birthday
+        }
     }
 
     Employee.update({
