@@ -6,15 +6,26 @@
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-5">
                     <div class="card w-100">
                         <div class="card-body">
-                            <h5 class="card-title">
+                            <span id= "delete-button" class=" rounded-circle">X</span>
+                            <h5 class="card-title text-center">
                                 <%= company.name %>
                             </h5>
                             <p class="card-text">
-                                CIN: <strong> <%= company.cin %></strong>
-                                
-                                City: <strong><%= company.city %></Strong>
+                                CIN: <strong>
+                                    <%= company.cin %>
+                                </strong>
+                                City: <strong>
+                                    <%= company.city %>
+                                </Strong>
                             </p>
-                            <a href="#" class="btn btn-dark">More</a>
+                            <p class="card-text"> Province: <strong>
+                                    <%= company.province %>
+                                </Strong>
+                                City: <strong>
+                                    <%= company.city %>
+                                </Strong></p>
+
+                            <a href="#" class="btn-more btn btn-dark ms-auto">More</a>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,9 @@
 @import url("/css/bootstrap-icons.css");
 @import url("http://cdn.persianfort.ir/Fonts/iransans/iransans.css");
+a {
+  color: black;
+}
+
 nav .navbar-brand {
   padding: 0;
   font-size: 1.5rem;
@@ -48,11 +52,23 @@ nav .nav-item .nav-link {
   border-radius: 10px 10px 0 0;
   height: 250px !important;
 }
-.card .btn-buy {
+.card .btn-more {
   width: 45%;
-  background-color: #4B505A !important;
+  margin-left: auto;
   border-radius: 8px;
-  display: inline-block;
+  display: block;
+}
+.card .btn-more:hover {
+  color: slateblue !important;
+  background-color: white !important;
+}
+.card #delete-button {
+  color: red;
+}
+.card #delete-button:hover {
+  color: orange;
+  text-shadow: 0 1px 3px red;
+  cursor: pointer;
 }
 
 .product-page-wrapper {

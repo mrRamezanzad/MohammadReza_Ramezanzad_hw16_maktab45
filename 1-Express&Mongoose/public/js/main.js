@@ -62,15 +62,15 @@
 //     // console.log(filteredProducts);
 //     renderCards(filteredProducts)
 // }
-
-card hover shadow
+console.log("hello");
+// card hover shadow
 $(document).on("mouseover mouseout", ".card", function () {
     // over
     $(this).toggleClass("shadow");
 });
 
 // // btn hover shadow 
-$("body").on("mouseover mouseout", ".btn-buy", function () {
+$("body").on("mouseover mouseout", ".btn-more", function () {
     // over
     $(this).toggleClass("shadow");
 });
