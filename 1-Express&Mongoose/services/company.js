@@ -5,7 +5,6 @@ module.exports = {
         model.remove({}, (err, companies) => {
             if (err) console.log(err)
             return console.log(companies)
-
         })
     },
     create: (companyInfo, callback) => {
@@ -43,7 +42,6 @@ module.exports = {
             if (err) console.log(err);
             callback(companies);
         })
-
     },
     update: (match, updateInfo, callback) => {
         companyModel.findOneAndUpdate(

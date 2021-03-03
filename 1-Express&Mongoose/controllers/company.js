@@ -42,6 +42,7 @@ const Company = require('../services/company')
 
 // ================= create 
 router.post("/company/create", (req, res) => {
+  
   let newCompanyInfo = {
     ...(req.body.name) && {
       name: req.body.name
@@ -87,21 +88,34 @@ router.get("/company/getAll", (req, res) => {
   })
 })
 
-router.get("/company/get", (req, res) => {
-  console.log("queried id", req.query.id);
-  Company.read({
-    _id: req.query.id
-  }, (company) => {
-    if (company) {
+// ================= get queries
+router.get("/company/get/q=", (req, res) => {
 
+  let selectedRegister = new Date()
+  selectedRegister.setFullYear(selectedRegister.getFullYear() - req.query.lt)
+
+  let match = {
+    ...(req.query.lt) && {
+      registerDate: {
+        $gte: selectedRegister
+      },
+    },
+    ...(req.query.id) && {
+      _id: req.query.id
+    }
+  }
+
+  Company.read(match, (company) => {
+    if (company) {
       res.json(company)
+      // console.log(company);
     } else {
-      res.status(404).json({
-        msg: "404 not found"
+      res.json({
+        msg: "nothing found"
       })
     }
   })
-})
+});
 
 // ================= update 
 router.put("/company/update", (req, res) => {
