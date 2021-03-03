@@ -4,7 +4,6 @@ const express = require('express'),
 // adding employee services
 const Employee = require('../services/employee')
 
-
 // ============== crud services routes
 // Employee.dropCollection()
 
@@ -32,7 +31,6 @@ const Employee = require('../services/employee')
 // }, ], (employees) => {
 //     console.log(employees);
 // })
-
 
 // Employee.update({
 //     _id: "603e930785955a0a1cb0c8cb"
@@ -91,6 +89,7 @@ router.post("/employee/create", (req, res) => {
 })
 
 // ================= read
+
 router.get("/employee/getAll", (req, res) => {
     let currentYear = new Date().getFullYear(),
         match = {
@@ -110,6 +109,9 @@ router.get("/employee/getAll", (req, res) => {
                     $gte: new Date(`${currentYear - req.query.maxAge}`)
                 }
             },
+            ...(req.query.manager) && {
+                manager: req.query.manager
+            }
         },
         exc = req.query.exc && req.query.exc.split(","),
         exclude = exc && {
@@ -134,7 +136,7 @@ router.get("/employee/getAll", (req, res) => {
         }
 
     // console.log(match);
-    // console.log(exclude);
+    // console.log(exclude.filter(el => el.trim()));
     // console.log(currentYear);
 
     Employee.read(match, exclude, (employees) => {

@@ -9,8 +9,8 @@ module.exports = {
         })
     },
     create: (employeeInfo, callback) => {
-        if (Array.isArray(employeeInfo)) {
 
+        if (Array.isArray(employeeInfo)) {
             employeeInfo.forEach(employee => {
                 new employeeModel({
                     firstName: employee.firstName,
@@ -40,13 +40,18 @@ module.exports = {
         }
     },
     read: (match, exclude, callback) => {
-       exclude = {...exclude ,_id: 1, __v: 0}
+        exclude = {
+            ...exclude,
+            _id: 1,
+            __v: 0
+        }
         employeeModel.find(match, exclude, (err, employees) => {
             if (err) console.log(err);
             callback(employees)
         })
 
     },
+
     update: (match, updateInfo, callback) => {
         employeeModel.findOneAndUpdate(
             match, updateInfo, {
@@ -59,7 +64,7 @@ module.exports = {
     delete: (match, callback) => {
         employeeModel.deleteOne(match, (err, employee) => {
             if (err) console.log(err);
-           callback(employee);
+            callback(employee);
         })
     }
 }
