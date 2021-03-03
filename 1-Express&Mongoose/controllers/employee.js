@@ -66,14 +66,26 @@ router.post("/employee/create", (req, res) => {
     }
 
     Employee.create([newEmployeeInfo], (employee) => {
-        res.status(201).json(employee)
+        if (employee) {
+            res.status(201).json(employee)
+        } else {
+            res.json({
+                msg: "something went wrong"
+            })
+        }
     })
 })
 
 // ================= read
 router.get("/employee/getAll", (req, res) => {
     Employee.read({}, (employees) => {
-        res.json(employees)
+        if (employees) {
+            res.json(employees)
+        } else {
+            res.json({
+                msg: "something went wrong"
+            })
+        }
     })
 })
 
@@ -82,7 +94,13 @@ router.get("/employee/get", (req, res) => {
     Employee.read({
         _id: req.query.id
     }, (employee) => {
-        res.json(employee)
+        if (employee) {
+            res.json(employee)
+        } else {
+            res.json({
+                msg: "something went wrong"
+            })
+        }
     })
 })
 
@@ -113,7 +131,13 @@ router.put("/employee/update", (req, res) => {
     Employee.update({
         _id: req.query.id
     }, employeeUpdateInfo, (employee) => {
-        res.json(employee);
+        if (employee) {
+            res.json(employee);
+        } else {
+            res.json({
+                msg: "something went wrong"
+            })
+        }
     })
 })
 
@@ -124,7 +148,13 @@ router.delete("/employee/delete", (req, res) => {
     Employee.delete({
         _id: req.query.id
     }, (response) => {
-        res.json(response)
+        if (response) {
+            res.json(response)
+        } else {
+            res.json({
+                msg: "something went wrong"
+            })
+        }
     })
 })
 
