@@ -5,20 +5,20 @@ module.exports = mongoose.model("Company", mongoose.Schema({
         type: String,
     },
     cin: {
-        type: Number,
+        type: String,
         required: true,
     },
     city: {
         type: String,
     },
-    county: {
+    province: {
         type: String,
     },
     registerDate: {
         type: Date,
     },
     telephone: {
-        type: Number,
+        type: String,
     }
 
 }))

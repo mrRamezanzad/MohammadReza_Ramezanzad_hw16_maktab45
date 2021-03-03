@@ -1,8 +1,6 @@
 const express = require('express'),
   router = express.Router()
 
-
-const company = require('../models/company')
 // adding company services
 const Company = require('../services/company')
 
@@ -10,27 +8,29 @@ const Company = require('../services/company')
 // Company.dropCollection()
 
 // Company.create([{
-//     name: "rastad",
-//     cin: 1,
-//     city: "tehran",
-//     county: "eslamshar",
-//     registerDate: Date.now(),
-//     telephone: 09191234533,
-//   },{
-//     name: "afra",
-//     cin: 2,
-//     city: "tehran",
-//     county: "eslamshar",
-//     registerDate: Date.now(),
-//     telephone: 09191234533,
-//   },{
-//     name: "Montego",
-//     cin: 3,
-//     city: "tehran",
-//     county: "eslamshar",
-//     registerDate: Date.now(),
-//     telephone: 09191234533,
-//   },])
+//   name: "rastad",
+//   cin: "1",
+//   city: "tehran",
+//   province: "eslamshar",
+//   registerDate: new Date("2010"),
+//   telephone: "09191234533",
+// }, {
+//   name: "afra",
+//   cin: "2",
+//   city: "rasht",
+//   province: "eslamshar",
+//   registerDate: new Date("2019"),
+//   telephone: "09191234533",
+// }, {
+//   name: "Montego",
+//   cin: "3",
+//   city: "isfahan",
+//   province: "eslamshar",
+//   registerDate: new Date("2021"),
+//   telephone: "09191234533",
+// }, ], (companies) => {
+//   console.log(companies);
+// })
 
 
 // Company.update({_id: "603e882fb0e0560348a1c8bb"},{name: "javeed"})
@@ -42,7 +42,7 @@ const Company = require('../services/company')
 
 // ================= create 
 router.post("/company/create", (req, res) => {
-  
+
   let newCompanyInfo = {
     ...(req.body.name) && {
       name: req.body.name
@@ -53,8 +53,8 @@ router.post("/company/create", (req, res) => {
     ...(req.body.city) && {
       city: req.body.city
     },
-    ...(req.body.county) && {
-      county: req.body.county
+    ...(req.body.province) && {
+      province: req.body.province
     },
     ...(req.body.registerDate) && {
       registerDate: new Date(req.body.registerDate)
@@ -130,8 +130,8 @@ router.put("/company/update", (req, res) => {
     ...(req.body.city) && {
       city: req.body.city
     },
-    ...(req.body.county) && {
-      county: req.body.county
+    ...(req.body.province) && {
+      province: req.body.province
     },
     ...(req.body.registerDate) && {
       registerDate: new Date(req.body.registerDate)
@@ -140,18 +140,31 @@ router.put("/company/update", (req, res) => {
       telephone: req.body.telephone
     }
   }
+  if (req.query.all === "true") {
 
-  Company.update({
-    _id: req.query.id
-  }, companyUpdateInfo, (company) => {
-    if (company) {
-      res.json(company);
-    } else {
-      res.json({
-        msg: "something went wrong"
-      })
-    }
-  })
+    Company.updateAll({}, companyUpdateInfo, (companies) => {
+      if (companies) {
+        res.json(companies);
+      } else {
+        res.json({
+          msg: "something went wrong"
+        })
+      }
+    })
+  } else {
+
+    Company.update({
+      _id: req.query.id
+    }, companyUpdateInfo, (company) => {
+      if (company) {
+        res.json(company);
+      } else {
+        res.json({
+          msg: "something went wrong"
+        })
+      }
+    })
+  }
 })
 
 // =================== delete

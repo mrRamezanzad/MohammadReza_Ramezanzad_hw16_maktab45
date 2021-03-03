@@ -15,7 +15,7 @@ module.exports = {
                     name: company.name,
                     cin: company.cin,
                     city: company.city,
-                    county: company.county,
+                    province: company.province,
                     registerDate: company.registerDate,
                     telephone: company.telephone,
                 }).save((err, company) => {
@@ -28,7 +28,7 @@ module.exports = {
                 name: companyInfo.name,
                 cin: companyInfo.cin,
                 city: companyInfo.city,
-                county: companyInfo.county,
+                province: companyInfo.province,
                 registerDate: companyInfo.registerDate,
                 telephone: companyInfo.telephone,
             }).save((err, company) => {
@@ -50,6 +50,15 @@ module.exports = {
             }, (err, company) => {
                 if (err) console.log(err);
                 callback(company);
+            })
+    },
+    updateAll: (match, updateInfo, callback) => {
+        companyModel.updateMany(
+            match, updateInfo, {
+                new: true
+            }, (err, companies) => {
+                if (err) console.log(err);
+                callback(companies);
             })
     },
     delete: (match, callback) => {
