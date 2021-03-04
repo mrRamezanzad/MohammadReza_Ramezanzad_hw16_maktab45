@@ -7,29 +7,30 @@ a {
 
 // navigation styles
 nav {
-&:hover{
-    box-shadow: 0px 0px 15px gray;
-    transition: all 250ms linear;
-}
+    &:hover {
+        box-shadow: 0px 0px 15px gray;
+        transition: all 250ms linear;
+    }
+    
     .navbar-brand {
         padding: 0;
         font-size: 1.5rem;
         color: #7B7778 !important;
         font-family: monospace;
         width: 300px;
-
+        
         &::first-letter {
             color: black !important;
             font-size: 2rem;
-
+            
         }
-
+        
         &:hover {
             color: #968561 !important;
             text-shadow: 0 2px 2px #74654B;
             font-weight: 900;
             font-family: cursive;
-            transition: all .1s steps(100);
+            transition: all .2s steps(20);
 
             &::first-letter {
                 color: #4B505A !important;
@@ -38,18 +39,19 @@ nav {
     }
 
     .nav-item {
-
+        
         margin-left: 10px;
-
+        
         &:hover {
-
+            
             .nav-link,
             span {
+                transition: all 200ms linear;
                 color: #968561 !important;
                 text-shadow: 0 0 1px black;
             }
         }
-
+        
         span.bi {
             // margin-top: 10px;
             display: inline-block !important;
@@ -62,9 +64,10 @@ nav {
     }
 }
 
-#new-button{
-    color: #74654B!important;
-    &:hover{
+#new-button {
+    color: #74654B !important;
+
+    &:hover {
         color: black !important;
     }
 }
@@ -149,7 +152,8 @@ nav {
         border: none;
     }
 
-    #delete-button , .modal-header button{
+    #delete-button,
+    .modal-header button {
         color: red !important;
 
         &:hover {

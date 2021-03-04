@@ -94,27 +94,27 @@ function showNewInfo(data) {
     <form class=" bg-mute"> 
         <div class="mb-2">
             <label for="name" class="form-label">name : </label>
-            <input type="text" class="form-control " name="name">
+            <input type="text" class="form-control " name="name" required>
         </div>
         <div class="mb-2">
             <label for="cin" class="form-label text-uppercase">cin: </label>
-            <input type="text" class="form-control" name="cin">
+            <input type="text" class="form-control" name="cin" required>
         </div>
         <div class="mb-2">
             <label for="city" class="form-label">city: </label>
-            <input type="text" class="form-control" name="city">
+            <input type="text" class="form-control" name="city" required>
         </div>
         <div class="mb-2">
             <label for="province" class="form-label">province: </label>
-            <input type="text" class="form-control" name="province">
+            <input type="text" class="form-control" name="province" required>
         </div>
         <div class="mb-2">
             <label for="register-date" class="form-label">register date: </label>
-            <input type="date" class="form-control" name="register-date">
+            <input type="date" class="form-control" name="register-date" required>
         </div>
         <div class="">
             <label for="telephone" class="form-label">telephone: </label>
-            <input type="text" class="form-control" name="telephone">
+            <input type="text" class="form-control" name="telephone" required>
         </div>
     </form>
     `)
@@ -185,27 +185,27 @@ function showMoreInfo(data) {
     <form class=" bg-mute"> 
         <div class="mb-2">
             <label for="name" class="form-label">name : </label>
-            <input disabled type="text" class="form-control " name="name" value=${data.name}>
+            <input disabled type="text" class="form-control " name="name" value=${data.name} required>
         </div>
         <div class="mb-2">
             <label for="cin" class="form-label text-uppercase">cin: </label>
-            <input disabled type="text" class="form-control" name="cin" value=${data.cin}>
+            <input disabled type="text" class="form-control" name="cin" value=${data.cin} required>
         </div>
         <div class="mb-2">
             <label for="city" class="form-label">city: </label>
-            <input disabled type="text" class="form-control" name="city" value=${data.city}>
+            <input disabled type="text" class="form-control" name="city" value=${data.city} required>
         </div>
         <div class="mb-2">
             <label for="province" class="form-label">province: </label>
-            <input disabled type="text" class="form-control" name="province" value=${data.province}>
+            <input disabled type="text" class="form-control" name="province" value=${data.province} required>
         </div>
         <div class="mb-2">
             <label for="register-date" class="form-label">register date: </label>
-            <input disabled type="date" class="form-control" name="register-date" value="${registerDate.getFullYear()}-0${registerDate.getMonth()+1}-0${registerDate.getDay()}">
+            <input disabled type="date" class="form-control" name="register-date" value="${registerDate.getFullYear()}-0${registerDate.getMonth()+1}-0${registerDate.getDay()}" required>
         </div>
         <div class="">
             <label for="telephone" class="form-label">telephone: </label>
-            <input disabled type="text" class="form-control" name="telephone" value=${data.telephone}>
+            <input disabled type="text" class="form-control" name="telephone" value=${data.telephone} required>
         </div>
     </form>
     `)

@@ -24,7 +24,7 @@ nav .navbar-brand:hover {
   text-shadow: 0 2px 2px #74654B;
   font-weight: 900;
   font-family: cursive;
-  transition: all 0.1s steps(100);
+  transition: all 0.2s steps(20);
 }
 nav .navbar-brand:hover::first-letter {
   color: #4B505A !important;
@@ -34,6 +34,7 @@ nav .nav-item {
 }
 nav .nav-item:hover .nav-link,
 nav .nav-item:hover span {
+  transition: all 200ms linear;
   color: #968561 !important;
   text-shadow: 0 0 1px black;
 }
@@ -117,10 +118,12 @@ nav .nav-item .nav-link {
 .modal-content div {
   border: none;
 }
-.modal-content #delete-button, .modal-content .modal-header button {
+.modal-content #delete-button,
+.modal-content .modal-header button {
   color: red !important;
 }
-.modal-content #delete-button:hover, .modal-content .modal-header button:hover {
+.modal-content #delete-button:hover,
+.modal-content .modal-header button:hover {
   color: orange !important;
   text-shadow: 0px 0px 8px red !important;
 }
