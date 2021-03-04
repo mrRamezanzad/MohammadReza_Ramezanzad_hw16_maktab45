@@ -41,6 +41,13 @@ nav .nav-item .nav-link {
   display: inline-block;
 }
 
+#new-button {
+  color: #74654B !important;
+}
+#new-button:hover {
+  color: black !important;
+}
+
 .card {
   width: 90%;
   border-radius: 10px;
@@ -95,6 +102,10 @@ nav .nav-item .nav-link {
   color: whitesmoke;
 }
 
+.modal-header {
+  padding-bottom: 0;
+}
+
 .modal-content {
   background: #74654B;
   color: white;
@@ -102,22 +113,30 @@ nav .nav-item .nav-link {
 .modal-content div {
   border: none;
 }
-.modal-content [data-bs-dismiss=modal] {
+.modal-content #delete-button, .modal-content .modal-header button {
   color: red !important;
 }
-.modal-content [data-bs-dismiss=modal]:hover {
+.modal-content #delete-button:hover, .modal-content .modal-header button:hover {
   color: orange !important;
-  text-shadow: 0 3px 3px orangered !important;
+  text-shadow: 0px 0px 8px red !important;
 }
-.modal-content #save-new:hover {
+.modal-content #save-button,
+.modal-content #update-button,
+.modal-content #cancel-button {
   color: white !important;
 }
-.modal-content #save-update:hover {
-  color: white !important;
-}
-.modal-content #delete-user[data-bs-dismiss=modal] {
+.modal-content #save-button:hover,
+.modal-content #update-button:hover,
+.modal-content #cancel-button:hover {
   color: black !important;
 }
-.modal-content #delete-user[data-bs-dismiss=modal]:hover {
+.modal-content #cancel-button:hover {
+  color: white !important;
+}
+
+#delete-user[data-bs-dismiss=modal] {
+  color: black !important;
+}
+#delete-user[data-bs-dismiss=modal]:hover {
   color: black !important;
 }

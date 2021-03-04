@@ -1,38 +1,25 @@
-// // render product cards
-// function renderCards(products) {
-//     $("main").html("")
-//     products.forEach(product => {
-//         $("main").append(`
-//         <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-5">
-//                 <div class="card">
-//                     <img src="${product.image}"
-//                         class="card-img-top" alt="nike shoe">
-//                     <div class="card-body pb-2">
-//                         <h5 class="card-title text-center mb-5">${product.name}</h5>
-//                         <p class="card-text text-end">رنگ: <span class="card-text-value me-5">${product.color}</span></p>
-//                         <p class="card-text text-end">سایز: <span class="card-text-value me-5">${product.size}</span></p>
-//                         <p class="card-text text-end">جنس: <span class="card-text-value me-5">${product.type}</span></p>
-//                         <div class="mt-5 d-flex justify-content-between">
-//                             <a href="/product/${product.id}" class="btn btn-buy text-white d-inline">خرید</a>
-//                             <span class="rtl">
-//                                 <span>تومان</span>
-//                                 <span>${product.price.toLocaleString()}</span>
-//                             </span>
-//                         </div>
-//                     </div>
-//                 </div>
-//             </div>
+let modalBody = $(".modal-body"),
+    modalFooter = $(".modal-footer")
+// ============================ Search section =======================
 
-//         `);
-//     });
-// }
-// renderCards(db)
+// go to search-bar action
+$(document).on("keyup", function (e) {
+    if (e.key === "/") {
+        $("[type='search']").focus()
 
-// // search-bar render
-// $("[type='search']").keyup(function (e) {
-//     let searchQuery = $(this).val().trim().toLowerCase()
-//     searchProducts(searchQuery)
-// });
+        // $("[type='search']").toggleClass("shadow");
+    }
+    if (e.key === "Escape") {
+        $("[type='search']").blur()
+        // $("[type='search']").toggleClass("shadow");
+    }
+})
+
+// search sync rendering page
+$("[type='search']").keyup(function (e) {
+    let searchQuery = $(this).val().trim().toLowerCase()
+    // searchProducts(searchQuery)
+});
 
 // // search functionality
 // function searchProducts(searchQuery) {
@@ -62,7 +49,8 @@
 //     // console.log(filteredProducts);
 //     renderCards(filteredProducts)
 // }
-console.log("hello");
+
+// ========================== hover effects ===========================
 // card hover shadow
 $(document).on("mouseover mouseout", ".card", function () {
     // over
@@ -75,51 +63,198 @@ $("body").on("mouseover mouseout", ".btn-more", function () {
     $(this).toggleClass("shadow");
 });
 
+// ======================= Delete button ============================
+$(document).on("click", "[role='delete-card']", function (e) {
+    let cardId = String($(this).attr('card-id'))
+    console.log(cardId);
+    $.ajax({
+        type: "DELETE",
+        url: `/company/delete?id=${cardId}`,
+        success: function (response) {
+            console.log("success:", response);
+            location.reload()
+        },
+        error: function (err) {
+            console.log("error:", err);
+            alert(err)
+        }
+    })
+})
 
-// // go to search-bar action
-// $(document).on("keyup", function (e) {
-//     console.log(e.key);
-//     if (e.key === "/") {
-//         $("[type='search']").focus()
+// ============================ Modal Section ============================
+// new button modal
+$(document).on("click", "#new-button", function (e) {
+    showNewInfo()
+})
 
-//     // $("[type='search']").toggleClass("shadow");
-//     }
-//     if (e.key === "Escape") {
-//         $("[type='search']").blur()
-//     // $("[type='search']").toggleClass("shadow");
-//     }
-// })
+// render modal form for creating info
+function showNewInfo(data) {
+    modalBody.html('')
+    modalBody.append(`
+    <form class=" bg-mute"> 
+        <div class="mb-2">
+            <label for="name" class="form-label">name : </label>
+            <input type="text" class="form-control " name="name">
+        </div>
+        <div class="mb-2">
+            <label for="cin" class="form-label text-uppercase">cin: </label>
+            <input type="text" class="form-control" name="cin">
+        </div>
+        <div class="mb-2">
+            <label for="city" class="form-label">city: </label>
+            <input type="text" class="form-control" name="city">
+        </div>
+        <div class="mb-2">
+            <label for="province" class="form-label">province: </label>
+            <input type="text" class="form-control" name="province">
+        </div>
+        <div class="mb-2">
+            <label for="register-date" class="form-label">register date: </label>
+            <input type="date" class="form-control" name="register-date">
+        </div>
+        <div class="">
+            <label for="telephone" class="form-label">telephone: </label>
+            <input type="text" class="form-control" name="telephone">
+        </div>
+    </form>
+    `)
 
-// show modal form for create
-// function showSignUpForm(){
-//     console.log("new user is invoked")
-//     modalBody.html('')
-//     modalBody.append(`
-//     <form class=" bg-dark"> 
-//     <div class="mb-3">
-//     <label for="exampleInputEmail1" class="form-label">user id: </label>
-//     <input type="text" class="form-control " name="id" >
-//     </div>
-//     <div class="mb-3">
-//     <label for="exampleInputPassword1" class="form-label">first name: </label>
-//     <input type="text" class="form-control" name="first_name">
-//     </div>
-//     <div class="mb-3">
-//     <label for="exampleInputPassword1" class="form-label">last name: </label>
-//     <input type="text" class="form-control" name="last_name">
-//     </div>
-//     <div class="mb-3">
-//     <label for="exampleInputPassword1" class="form-label">email address: </label>
-//     <input type="text" class="form-control" name="email">
-//     </div>
-//     <div class="mb-3">
-//     <label for="exampleInputPassword1" class="form-label">picture URL: </label>
-//     <input type="text" class="form-control" name="avatar">
-//     </div>
-//     </form>
-//     `)
-//     modalFooter.html(`
-//     <button id="save-new" class=" btn btn-outline-success offset-left my-3" data-bs-dismiss="modal"> Save </button>
-//     `)
-//     console.log(users)
-// }
+    modalFooter.html(`
+    <button id="create-button" class="text-white btn btn-outline-success offset-left" data-bs-dismiss="modal"> Create </button>
+    `)
+}
+
+// create button click action
+$(document).on("click", "#create-button", function (e) {
+    let newInformation = getInformations()
+    $.ajax({
+        type: "POST",
+        url: "/company/create",
+        data: newInformation,
+        success: function (response) {
+            if (response) {
+                console.log("error: ", response);
+            }
+        },
+        error: function (err) {
+            if (err) {
+                console.log("error: ", err);
+            }
+        }
+    });
+})
+
+// getting new informations
+function getInformations() {
+
+    let inputs = {
+        "name": $("[name='name']").val(),
+        "cin": $("[name='cin']").val(),
+        "city": $("[name='city']").val(),
+        "province": $("[name='province']").val(),
+        "registerDate": new Date($("[name='register-date']").val()).toISOString(),
+        "telephone": $("[name='telephone']").val()
+    }
+    return inputs
+}
+
+// show more button
+$(document).on("click", ".btn-more", function (e) {
+    let cardId = $(this).attr("card-id")
+    $.ajax({
+        type: "GET",
+        url: `/company/get/q=?id=${cardId}`,
+        success: function (response) {
+            console.log("success:", response);
+            showMoreInfo(response[0])
+        },
+        error: function (err) {
+            console.log("error:", err);
+            alert(err)
+        }
+    });
+})
+
+// render modal form for more info
+function showMoreInfo(data) {
+    let registerDate = new Date(data.registerDate)
+
+    modalBody.html('')
+    modalBody.append(`
+    <form class=" bg-mute"> 
+        <div class="mb-2">
+            <label for="name" class="form-label">name : </label>
+            <input disabled type="text" class="form-control " name="name" value=${data.name}>
+        </div>
+        <div class="mb-2">
+            <label for="cin" class="form-label text-uppercase">cin: </label>
+            <input disabled type="text" class="form-control" name="cin" value=${data.cin}>
+        </div>
+        <div class="mb-2">
+            <label for="city" class="form-label">city: </label>
+            <input disabled type="text" class="form-control" name="city" value=${data.city}>
+        </div>
+        <div class="mb-2">
+            <label for="province" class="form-label">province: </label>
+            <input disabled type="text" class="form-control" name="province" value=${data.province}>
+        </div>
+        <div class="mb-2">
+            <label for="register-date" class="form-label">register date: </label>
+            <input disabled type="date" class="form-control" name="register-date" value="${registerDate.getFullYear()}-0${registerDate.getMonth()+1}-0${registerDate.getDay()}">
+        </div>
+        <div class="">
+            <label for="telephone" class="form-label">telephone: </label>
+            <input disabled type="text" class="form-control" name="telephone" value=${data.telephone}>
+        </div>
+    </form>
+    `)
+
+    modalFooter.html(`
+    <button id="update-button" type="button" class="btn btn-warning">Update</button>
+    <button id="cancel-button" hidden class="text-white btn btn-outline-dark offset-left" > cancel </button>
+    <button card-id="${data._id}" id="save-button"  hidden class="text-white btn btn-outline-success offset-left" data-bs-dismiss="modal"> Save </button>
+    `)
+}
+
+// update button click
+$(document).on("click", "#update-button", function (e) {
+    $("#update-button").attr("hidden", "true")
+    $("#save-button").removeAttr("hidden")
+    $("#cancel-button").removeAttr("hidden")
+    $("form input").removeAttr("disabled")
+
+})
+
+// cancel button click
+$(document).on("click", "#cancel-button", function (e) {
+    $("#update-button").removeAttr("hidden", "hidden")
+    $("#save-button").attr("hidden", "hidden")
+    $("#cancel-button").attr("hidden", "hidden")
+    $("form input").attr("disabled", "true")
+
+})
+
+// save update click
+$(document).on("click", "#save-button", function (e) {
+    console.log("saveing proccess started");
+    let newInformation = getInformations(),
+        cardId = $(this).attr("card-id")
+
+$.ajax({
+    type: "put",
+    url: `/company/update?id=${cardId}`,
+    data: newInformation,
+    dataType: "json",
+    success: function (response) {
+        if (response) {
+            console.log("success: ", response);
+            location.reload()
+        }
+    },
+    error: function (err) {
+        if (err) {
+            console.log("error: ", err);
+        }
+    }
+});
+})

@@ -5,6 +5,7 @@ a {
     color: black;
 }
 
+// navigation styles
 nav {
 
     .navbar-brand {
@@ -58,6 +59,14 @@ nav {
     }
 }
 
+#new-button{
+    color: #74654B!important;
+    &:hover{
+        color: black !important;
+    }
+}
+
+// ================ card styles
 .card {
     width: 90%;
     border-radius: 10px;
@@ -78,7 +87,6 @@ nav {
         display: block;
         background: #74654B !important;
 
-        // background-color: darkslategray !important;
         &:hover {
             color: #968561 !important;
             text-shadow: 0 2px 1px #968561;
@@ -126,43 +134,62 @@ nav {
     }
 }
 
+.modal-header {
+    padding-bottom: 0;
+}
+
 .modal-content {
-    background: #74654B ;
+    background: #74654B;
     color: white;
 
     div {
         border: none;
     }
 
-    [data-bs-dismiss="modal"] {
+    #delete-button , .modal-header button{
         color: red !important;
+
         &:hover {
             color: orange !important;
-            text-shadow: 0 3px 3px orangered !important;
+            text-shadow: 0px 0px 8px red !important;
         }
     }
 
-    #save {
-        &-new {
-            &:hover {
-                color: white !important;
-            }
-        }
-
-        &-update {
-            &:hover {
-                color: white !important;
-            }
-        }
-    }
-
-    #delete-user[data-bs-dismiss=modal] {
-
-        color: black !important;
+    #save-button,
+    #update-button,
+    #cancel-button {
+        color: white !important;
 
         &:hover {
-
             color: black !important;
         }
+    }
+
+    // #save-button {
+    //     &:hover {
+    //         color: white !important;
+    //     }
+    // }
+
+    // #update-button {
+    //     &:hover {
+    //         color: white !important;
+    //     }
+    // }
+    #cancel-button {
+        &:hover {
+            color: white !important;
+        }
+    }
+}
+
+
+#delete-user[data-bs-dismiss=modal] {
+
+    color: black !important;
+
+    &:hover {
+
+        color: black !important;
     }
 }

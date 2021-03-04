@@ -1,12 +1,15 @@
 <%- include("./partials/header") %>
 
     <div class="container text-capitalize">
+        <div id="new-button" class="btn fs-1 text-right w-5" data-bs-toggle="modal" data-bs-target="#more-info-modal">
+            &plus;</div>
         <main class="row gx-sm-3 gx-md-5">
             <% companies.forEach(company=> {%>
                 <div class="col-12 col-md-6 col-lg-4 d-flex justify-content-center mb-5">
                     <div class="card w-100">
                         <div class="card-body">
-                            <span id="delete-button" class=" rounded-circle">X</span>
+                            <span card-id=<%=company._id %> role="delete-card" id="delete-button" class="
+                                rounded-circle">X</span>
                             <h5 class="card-title text-center">
                                 <%= company.name %>
                             </h5>
@@ -20,12 +23,14 @@
                             </p>
                             <p class="card-text"> Province: <strong>
                                     <%= company.province %>
-                                </Strong>
-                                City: <strong>
-                                    <%= company.city %>
-                                </Strong></p>
+                            </p>
+                            </Strong>
+                            Telephone: <strong>
+                                <%= company.telephone %>
+                            </Strong>
 
-                            <a href="#" class="btn-more btn btn-dark ms-auto" data-bs-toggle="modal"
+                            <a card-id=<%=company._id %> class="btn-more btn btn-dark mt-3 ms-auto"
+                                data-bs-toggle="modal"
                                 data-bs-target="#more-info-modal">More</a>
                         </div>
                     </div>
@@ -46,14 +51,11 @@
                                     ...
                                 </div>
                                 <div class="modal-footer">
-                                    <button id="update-user" type="button" class="btn btn-warning">Update</button>
-                                    <button id="delete-user" type="button" class="btn btn-danger"
-                                        data-bs-dismiss="modal">Delete</button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
         </main>
     </div>
 

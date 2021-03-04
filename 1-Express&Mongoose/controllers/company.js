@@ -42,7 +42,7 @@ const Company = require('../services/company')
 
 // ================= create 
 router.post("/company/create", (req, res) => {
-
+  console.log(req.body)
   let newCompanyInfo = {
     ...(req.body.name) && {
       name: req.body.name
