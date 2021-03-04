@@ -134,6 +134,7 @@ $(document).on("click", "#create-button", function (e) {
         success: function (response) {
             if (response) {
                 console.log("error: ", response);
+                location.reload()
             }
         },
         error: function (err) {
