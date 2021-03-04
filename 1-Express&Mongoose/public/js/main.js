@@ -131,9 +131,10 @@ $(document).on("click", "#create-button", function (e) {
         type: "POST",
         url: "/company/create",
         data: newInformation,
+        dataType: "json",
         success: function (response) {
             if (response) {
-                console.log("error: ", response);
+                console.log("success: ", response);
                 location.reload()
             }
         },
@@ -241,21 +242,21 @@ $(document).on("click", "#save-button", function (e) {
     let newInformation = getInformations(),
         cardId = $(this).attr("card-id")
 
-$.ajax({
-    type: "put",
-    url: `/company/update?id=${cardId}`,
-    data: newInformation,
-    dataType: "json",
-    success: function (response) {
-        if (response) {
-            console.log("success: ", response);
-            location.reload()
+    $.ajax({
+        type: "put",
+        url: `/company/update?id=${cardId}`,
+        data: newInformation,
+        dataType: "json",
+        success: function (response) {
+            if (response) {
+                console.log("success: ", response);
+                location.reload()
+            }
+        },
+        error: function (err) {
+            if (err) {
+                console.log("error: ", err);
+            }
         }
-    },
-    error: function (err) {
-        if (err) {
-            console.log("error: ", err);
-        }
-    }
-});
+    });
 })
